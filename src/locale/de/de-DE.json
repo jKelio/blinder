@@ -1,0 +1,47 @@
+{
+    "SKILL_NAME": "Vong Duden - dein Vong Translator",
+    "WELCOME": [
+        "Willkommen zum Vong Duden! Hier übersetze ich alle gewünschten Sprüche und Phrasen in die jugendliche Vong Sprache. ",
+        "Hallo zum Vong Duden. Ich übersetze dir variable Sätze oder Wörter in Vong Sprache. ",
+        "Servus zum Vong Duden - deinem Dolmetscher für Vong! ",
+        "Willkommeng zung Vong Dudeng - deinem persönlichen Übersetzungshandbuch! "
+    ],
+    "WELCOME_AGAIN": [
+        "Willkommen zurück!",
+        "Freut mich dich wieder zum Vong Duden begrüßen zu dürfen!",
+        "Hey, schön wieder von dir hören zu dürfen!"
+    ],
+    "TRANSLATION": [
+        "<speak>Ok, vong <lang xml:lang='en-US'>talken</lang> her heißt das: {translatedText}! <break time='800ms'/> {promptAgain}</speak>",
+        "<speak>In Vong Sprache bedeutet das: {translatedText}! <break time='800ms'/> {promptAgain}</speak>"
+    ],
+    "TRANSLATING_TEXT": "Dein Spruch:",
+    "TRANSLATED_TEXT": "Vong Übersetzung:",
+    "TRANSLATION_PROMPT": [
+        "Möchtest du einen Spruch übersetzen lassen?",
+        "Darf ich etwas übersetzen?"
+    ],
+    "TRANSLATION_PROMPT_AGAIN": [
+        "Darf ich noch etwas übersetzen?",
+        "Noch etwas übersetzen?",
+        "Noch etwas?"
+    ],
+    "TRANSLATE_AGAIN": [
+        "Okay, was darf ich für dich übersetzen?",
+        "Was darf ich für dich übersetzen?",
+        "Was möchtest du in Vong Sprache wissen?"
+    ],
+    "HELP": [
+        "Sage oder frage mich einfach nach einer Übersetzung einer bestimmten Phrase in die jugendliche Vong Sprache.",
+        "Du kannst mich zum Beispiel auffordern: Übersetze <break time='300ms'/> du bist nett <break time='300ms'/> oder andere Phrasen."
+    ],
+    "ABOUT_TITLE": "Was ist Vong?",
+    "ABOUT": "Als Vong wird ein Mitte der 2010er Jahre geprägter Sprachstil der deutschen Sprache bezeichnet, der eine veränderte Grammatik und viele Anglizismen aufweist. Er nimmt ironisch Bezug auf die schlechten Deutschkenntnisse vieler Jugendlicher und Erwachsener. Bekannte Beispiele sind der Satz „Was ist das für eins life?“ und die nachgestellte Präpositionalphrase „vong … her“ (als adverbiale Bestimmung).",
+    "STOP": [
+        "Okai, bis zung näxteng Mal!",
+        "Ciao, ciao. Vielen Dank, dass du Vong Duden verwendet hast!",
+        "Auf wiedersehen, ich hoffe, dass du Vong Duden bald wieder verwenden wirst!",
+        "Tschüss und vielen Dank, dass du Vong Duden verwendet hast!"
+    ],
+    "ERROR": "Entschuldigung, ich habe das nicht verstanden. Bitte wiederhole das nochmals!"
+}

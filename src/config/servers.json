@@ -1,0 +1,8 @@
+{
+  "VongGenerator": {
+    "protocol": "https://",
+    "host": "{subdomain}vong-generator.com",
+    "port": ":443",
+    "path": ""
+  }
+}
