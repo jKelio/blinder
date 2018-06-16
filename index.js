@@ -10,8 +10,6 @@ const skillBuilder = Alexa.SkillBuilders.standard();
 const handlers = HandlersFactory.createHandlers();
 const localizationInterceptor = LocalizationInterceptorFactory.createLocalizationInterceptor();
 const errorHandler = HandlersFactory.createErrorHandler();
-console.log('Handlers');
-console.log(handlers);
 
 exports.handler = skillBuilder
     .addRequestHandlers(
@@ -19,6 +17,6 @@ exports.handler = skillBuilder
     )
     .addRequestInterceptors(localizationInterceptor)
     .addErrorHandlers(errorHandler)
-    .withTableName('VongDuden')
+    .withTableName('Blinder')
     .withAutoCreateTable(true)
     .lambda();

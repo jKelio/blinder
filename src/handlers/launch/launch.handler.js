@@ -1,6 +1,7 @@
 'use strict';
 
 const Alexa = require('ask-sdk');
+const fiveBoxService = require('../../services/fivebox/fiveboxService.factory').createFiveBoxService();
 
 class LaunchHandler {
     constructor() {}
@@ -18,58 +19,52 @@ class LaunchHandler {
         const requestAttributes = attributesManager.getRequestAttributes();
         const persistentAttributes = attributesManager.getPersistentAttributes();
 
-        const templateBackground = new Alexa.ImageHelper()
-            .withDescription('Vong Duden - Dein Vong Translator')
-            .addImageInstance('https://s3-eu-west-1.amazonaws.com/vong-duden/images/duden-1427114.jpg')
-            .getImage();
-
-        const templateImage = new Alexa.ImageHelper()
-            .withDescription('Vong Duden - Dein Vong Translator')
-            .addImageInstance('https: //s3-eu-west-1.amazonaws.com/vong-duden/images/logo_fanpage.png')
-            .getImage();
-
         let response;
+        let isStreamOver = false;
 
         return new Promise((resolve, reject) => {
             persistentAttributes.then((attributes) => {
                 let welcomeSpeech = requestAttributes.t('WELCOME_AGAIN');
-                let tutorialSpeech = requestAttributes.t('HELP');
                 let outputSpeech = welcomeSpeech;
 
                 if (!attributes['user']) {
                     attributes['user'] = session.user.userId;
+                    attributes['listenedContent'] = [];
                     welcomeSpeech = requestAttributes.t('WELCOME');
-                    outputSpeech = welcomeSpeech + tutorialSpeech;
+                    outputSpeech = welcomeSpeech;
                 }
 
                 attributes['visitCounter'] = attributes['visitCounter'] || 0;
                 attributes['visitCounter']++;
 
-                response = responseBuilder
-                    .speak(outputSpeech)
-                    .reprompt(tutorialSpeech)
-                    .withShouldEndSession(false);
+                fiveBoxService.fetchContent().then(body => {
+                    for (let i = 0; i <= body.content.length; i++) {
+                        const currentCurrent = body.content[i];
+                        if (!currentCurrent) {
+                            outputSpeech = requestAttributes.t('ENDSTREAM');
+                            isStreamOver = true;
+                            break;
+                        }
 
-                const templateTextContent = new Alexa.RichTextContentHelper()
-                    .withPrimaryText(welcomeSpeech)
-                    .getTextContent();
+                        const foundNumber = parseInt(attributes['listenedContent'].find(index => index === i));
+                        if (!isNaN(foundNumber)) {
+                            continue;
+                        }
 
-                if (this.supportsDisplay(handlerInput) || this.isSimulator(handlerInput)) {
-                    console.log('device supports a disply');
-                    response = response.addRenderTemplateDirective({
-                        "type": "BodyTemplate6",
-                        "token": "LAUNCH",
-                        "backButton": "VISIBLE",
-                        "backgroundImage": templateBackground,
-                        "image": templateImage,
-                        "textContent": templateTextContent
-                    });
-                }
+                        attributes['listenedContent'].push(i);
+                        attributes['lastContent'] = currentCurrent;
+                        outputSpeech += `<audio src='${currentCurrent.audio}' /></speak>`;
+                        break;
+                    }
 
-                attributesManager.setPersistentAttributes(attributes);
-                return handlerInput.attributesManager.savePersistentAttributes();
-            }).then(() => {
-                resolve(response.getResponse());
+                    attributesManager.setPersistentAttributes(attributes);
+                    return handlerInput.attributesManager.savePersistentAttributes();
+                }).then(() => {
+                    response = responseBuilder
+                        .speak(outputSpeech)
+                        .withShouldEndSession(isStreamOver);
+                    resolve(response.getResponse());
+                });
             });
         }).catch(err => {
             console.log(err);

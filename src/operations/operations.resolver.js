@@ -8,13 +8,11 @@ class OperationsResolver {
     this.operations = operations;
   }
 
-  resolveFetchTranslatedVongText() {
-    const uri = this.operations["fetchTranslatedVongText"].uri;
+  resolveFetchContent() {
+    const uri = this.operations["fetchContent"].uri;
 
-    const method = this.operations["fetchTranslatedVongText"].method;
-    const endpoint = format((this.baseUrl + uri), {
-      subdomain: ""
-    });
+    const method = this.operations["fetchContent"].method;
+    const endpoint = this.baseUrl + uri;
 
     return {
       url: endpoint,
@@ -22,17 +20,13 @@ class OperationsResolver {
     };
   }
 
-  resolveFetchVongImage(message) {
-    const formattedUri = format(
-      this.operations["fetchVongImage"].uri, {
-        message: message
-      }
-    );
-
-    const method = this.operations["fetchVongImage"].method;
-    const endpoint = format((this.baseUrl + formattedUri), {
-      subdomain: "img."
+  resolvePostMessage(message) {
+    const uri = format(this.operations["postMessage"].uri, {
+      message: message
     });
+
+    const method = this.operations["postMessage"].method;
+    const endpoint = this.baseUrl + uri;
 
     return {
       url: endpoint,

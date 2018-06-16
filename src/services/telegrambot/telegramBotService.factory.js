@@ -3,20 +3,20 @@
 const serverConfig = require('../../config/servers.json');
 const requestFactory = require("../../utilities/request/request.factory");
 const operationsResolverFactory = require("../../operations/operationsResolver.factory");
-const VongGeneratorService = require("./vongGenerator.service");
+const TelegramBotService = require("./telegramBot.service");
 
-class VongGeneratorServiceFactory {
-    static createVongGeneratorService() {
+class TelegramBotServiceFactory {
+    static createTelegramBotService() {
         const request = requestFactory.createRequest();
         const operationsResolver = operationsResolverFactory.createOperationsResolver(
-            serverConfig.VongGenerator
+            serverConfig.TelegramBotServer
         );
-        const vongGeneratorService = new VongGeneratorService(
+        const telegramBotService = new TelegramBotService(
             request,
             operationsResolver
         );
 
-        return vongGeneratorService;
+        return telegramBotService;
     }
 }
-module.exports = VongGeneratorServiceFactory;
+module.exports = TelegramBotServiceFactory;

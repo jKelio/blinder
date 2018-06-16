@@ -6,6 +6,7 @@
 const LaunchHandler = require('./launch/launch.handler');
 const HelpHandler = require('./help/help.handler');
 const YesHandler = require('./yes/yes.handler');
+const NoHandler = require('./no/no.handler');
 const StopHandler = require('./stop/stop.handler');
 const SessionEndedHandler = require('./sessionEnded/sessionEnded.handler');
 
@@ -21,6 +22,7 @@ class HandlersFactory {
         handlers.push(new LaunchHandler());
         handlers.push(new HelpHandler());
         handlers.push(new YesHandler());
+        handlers.push(new NoHandler());
         handlers.push(new StopHandler());
         handlers.push(new SessionEndedHandler());
 

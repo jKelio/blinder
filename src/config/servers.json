@@ -1,7 +1,13 @@
 {
-  "VongGenerator": {
+  "FiveBox": {
     "protocol": "https://",
-    "host": "{subdomain}vong-generator.com",
+    "host": "8hkwozr2d0.execute-api.eu-west-1.amazonaws.com",
+    "port": ":443",
+    "path": "/prod"
+  },
+  "TelegramBotServer": {
+    "protocol": "https://",
+    "host": "dd412ca3.ngrok.io",
     "port": ":443",
     "path": ""
   }

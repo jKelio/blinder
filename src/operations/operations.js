@@ -2,13 +2,13 @@
 
 class Operations {
   constructor() {
-    this.fetchTranslatedVongText = {
-      method: "POST",
-      uri: "/generate"
-    };
-    this.fetchVongImage = {
+    this.fetchContent = {
       method: "GET",
-      uri: "/?message={message}"
+      uri: "/getContent2"
+    };
+    this.postMessage = {
+      method: "GET",
+      uri: "/sendMessage?message={message}"
     };
   }
 }
